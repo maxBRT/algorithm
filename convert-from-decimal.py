@@ -105,9 +105,8 @@ def convert_to_base(base: int, number: str):
 
         while i < 10 and fractional_part not in list_of_fractions:
             list_of_fractions.append(fractional_part)
-            quotient = round(fractional_part, 2) * base
+            quotient = fractional_part * base
             integer_part = int(quotient)
-            print(integer_part)
             fractional_part = quotient - integer_part
             if base == 16:
                 if integer_part == 10:
