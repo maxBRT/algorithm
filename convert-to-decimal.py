@@ -1,24 +1,51 @@
 #!/usr/bin/env python3
 
 """
-INPUT: base (integer), number (string)
+ENTRÉE: Base (entier), Nombre (chaîne de caractères)
 
-Convert number to a list of characters
+SI Nombre contient '.' ALORS
+    Séparer Nombre en PartieEntière et PartieFractionnaire au niveau du point décimal
+SINON
+    PartieEntière = Nombre
+    PartieFractionnaire = chaîne vide
+FIN SI
 
-IF base equals 16 THEN
-    FOR each position in number
-        IF digit is A-F THEN convert to corresponding decimal value (10-15)
-    END FOR
-END IF
+Convertir PartieEntière en une liste de caractères
 
-result = 0
-FOR each digit from right to left of number (position = 0, 1, 2, ...)
-    Verify digit < base (otherwise error)
-    Value = digit * (base ^ position)
-    result = result + Value
-END FOR
+SI Base égale 16 ALORS
+    POUR chaque position dans PartieEntière
+        SI le chiffre est A-F ALORS convertir en valeur décimale correspondante (10-15)
+    FIN POUR
+FIN SI
 
-OUTPUT: result
+RésultatEntier = 0
+POUR chaque chiffre de droite à gauche de PartieEntière (position = 0, 1, 2, ...)
+    Vérifier que le chiffre < Base (sinon erreur)
+    Valeur = chiffre * (Base ^ position)
+    RésultatEntier = RésultatEntier + Valeur
+FIN POUR
+
+RésultatFractionnaire = 0
+SI PartieFractionnaire n'est pas vide ALORS
+    // Convertir PartieFractionnaire en une liste de chiffres individuels
+    Convertir PartieFractionnaire en une liste de caractères
+
+    SI Base égale 16 ALORS
+        POUR chaque position dans PartieFractionnaire
+            SI le chiffre est A-F ALORS convertir en valeur décimale correspondante (10-15)
+        FIN POUR
+    FIN SI
+
+    POUR chaque chiffre de gauche à droite de PartieFractionnaire (position = 1, 2, 3, ...)
+        Vérifier que le chiffre < Base (sinon erreur)
+        Valeur = chiffre * (Base ^ -position)  // Noter l'exposant négatif
+        RésultatFractionnaire = RésultatFractionnaire + Valeur
+    FIN POUR
+FIN SI
+
+Résultat = RésultatEntier + RésultatFractionnaire
+
+SORTIE: Résultat
 """
 
 def hexa_to_decimal(Digit: str):
