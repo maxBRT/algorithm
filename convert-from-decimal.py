@@ -128,7 +128,7 @@ def convert_to_base(base: int, number: str):
 
             new_base.append(str(integer_part))
             i += 1
-        if fractional_part in list_of_fractions:
+        if fractional_part in list_of_fractions and fractional_part != 0:
             new_base.append("...")
 
 
